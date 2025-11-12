@@ -31,17 +31,8 @@ Pablo Astroza – Desarrollador Front-End / Diseño e Integración 3D
 Este proyecto se distribuye bajo la licencia MIT.
 Puedes usarlo, modificarlo y distribuirlo libremente con atribución a los autores originales.
 
-🌐 Contacto
-
-
-📧 Correo: contacto@thunder3d.app (o el que corresponda)
 
 
 💻 Repositorio: https://github.com/astogeee510/thunder3D
 
 
-🌍 Sitio web oficial: https://thunder3d.app (opcional)
-
-
-
-¿Quieres que le agregue una sección de despliegue (deploy)? Por ejemplo, cómo publicarla en Vercel, Netlify o GitHub Pages según tu preferencia.
