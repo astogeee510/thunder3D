@@ -1,10 +1,14 @@
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { EditProductDialog } from "@/components/EditProductDialog";
+import { useToast } from "@/hooks/use-toast";
+import { Pencil, Trash2 } from "lucide-react";
 
-const impresoras = [
+const impresorasData = [
   {
     id: 1,
     name: "Ender 3 V3 SE",
@@ -62,6 +66,34 @@ const impresoras = [
 ];
 
 const Impresoras = () => {
+  const [impresoras, setImpresoras] = useState(impresorasData);
+  const [editingProduct, setEditingProduct] = useState<any>(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleDelete = (id: number) => {
+    setImpresoras(impresoras.filter(item => item.id !== id));
+    toast({
+      title: "Producto eliminado",
+      description: "El producto ha sido eliminado del catálogo",
+    });
+  };
+
+  const handleEdit = (product: any) => {
+    setEditingProduct(product);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleSave = (updatedProduct: any) => {
+    setImpresoras(impresoras.map(item => 
+      item.id === updatedProduct.id ? updatedProduct : item
+    ));
+    toast({
+      title: "Producto actualizado",
+      description: "Los cambios han sido guardados exitosamente",
+    });
+  };
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -108,15 +140,37 @@ const Impresoras = () => {
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="flex items-center justify-between">
+                <CardFooter className="flex items-center justify-between gap-2">
                   <span className="text-2xl font-bold text-primary">{impresora.price}</span>
-                  <Button>Ver detalles</Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => handleEdit(impresora)}
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button 
+                      variant="destructive" 
+                      size="icon"
+                      onClick={() => handleDelete(impresora.id)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </CardFooter>
               </Card>
             ))}
           </div>
         </div>
       </section>
+      
+      <EditProductDialog
+        product={editingProduct}
+        open={isEditDialogOpen}
+        onOpenChange={setIsEditDialogOpen}
+        onSave={handleSave}
+      />
       
       <Footer />
     </div>
