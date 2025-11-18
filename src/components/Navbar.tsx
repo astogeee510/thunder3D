@@ -6,20 +6,20 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <a href="/" className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:opacity-80 transition-opacity">
             Thunder3D
-          </h1>
+          </a>
           <div className="hidden md:flex items-center gap-6">
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/impresoras" className="text-sm font-medium hover:text-primary transition-colors">
               Impresoras
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/filamentos" className="text-sm font-medium hover:text-primary transition-colors">
               Filamentos
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/repuestos" className="text-sm font-medium hover:text-primary transition-colors">
               Repuestos
             </a>
-            <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+            <a href="/accesorios" className="text-sm font-medium hover:text-primary transition-colors">
               Accesorios
             </a>
           </div>
