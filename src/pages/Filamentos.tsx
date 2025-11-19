@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { EditProductDialog } from "@/components/EditProductDialog";
+import { CartButton } from "@/components/CartButton";
 import { useToast } from "@/hooks/use-toast";
 import { Pencil, Trash2 } from "lucide-react";
 
@@ -158,23 +159,34 @@ const Filamentos = () => {
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter className="flex items-center justify-between gap-2">
-                  <span className="text-2xl font-bold text-secondary">{filamento.price}</span>
-                  <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      onClick={() => handleEdit(filamento)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                    <Button 
-                      variant="destructive" 
-                      size="icon"
-                      onClick={() => handleDelete(filamento.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                <CardFooter className="flex-col gap-2">
+                  <CartButton 
+                    product={{
+                      id: filamento.id,
+                      name: filamento.name,
+                      price: parseInt(filamento.price.replace(/[$.]/g, '')),
+                      image: filamento.image,
+                      category: 'filamentos'
+                    }}
+                  />
+                  <div className="flex w-full items-center justify-between gap-2">
+                    <span className="text-2xl font-bold text-secondary">{filamento.price}</span>
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="icon"
+                        onClick={() => handleEdit(filamento)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button 
+                        variant="destructive" 
+                        size="icon"
+                        onClick={() => handleDelete(filamento.id)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
                 </CardFooter>
               </Card>
