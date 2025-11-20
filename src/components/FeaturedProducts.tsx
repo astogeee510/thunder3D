@@ -1,37 +1,41 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { CartButton } from "@/components/CartButton";
 
 const products = [
   {
     id: 1,
     name: "Impresora Pro X1",
-    price: "$599.990",
-    category: "Impresoras",
+    price: 599990,
+    image: "https://images.unsplash.com/photo-1636690620865-4e04a788e1e6?auto=format&fit=crop&q=80",
+    category: "impresoras" as const,
     badge: "Nuevo",
     description: "Alta precisión y velocidad",
   },
   {
     id: 2,
     name: "Filamento PLA Premium",
-    price: "$24.990",
-    category: "Filamentos",
+    price: 24990,
+    image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?auto=format&fit=crop&q=80",
+    category: "filamentos" as const,
     badge: "Popular",
     description: "1kg, múltiples colores",
   },
   {
     id: 3,
     name: "Kit de Boquillas",
-    price: "$35.990",
-    category: "Repuestos",
+    price: 35990,
+    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80",
+    category: "repuestos" as const,
     badge: null,
     description: "Set de 5 boquillas profesionales",
   },
   {
     id: 4,
     name: "Mesa de Impresión",
-    price: "$89.990",
-    category: "Accesorios",
+    price: 89990,
+    image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?auto=format&fit=crop&q=80",
+    category: "accesorios" as const,
     badge: "Oferta",
     description: "Superficie magnética flexible",
   },
@@ -83,11 +87,11 @@ const FeaturedProducts = () => {
                   </p>
                 </div>
                 
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-2xl font-bold">{product.price}</span>
-                  <Button size="sm" variant={index % 2 === 0 ? "default" : "secondary"}>
-                    Ver más
-                  </Button>
+                <div className="space-y-3 pt-2">
+                  <span className="text-2xl font-bold block">
+                    ${product.price.toLocaleString()}
+                  </span>
+                  <CartButton product={product} />
                 </div>
               </div>
             </Card>

@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Printer, Package, Settings, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
@@ -7,24 +8,28 @@ const categories = [
     description: "Equipos de última generación",
     icon: Printer,
     color: "primary",
+    link: "/impresoras",
   },
   {
     title: "Filamentos",
     description: "PLA, ABS, PETG y más",
     icon: Package,
     color: "secondary",
+    link: "/filamentos",
   },
   {
     title: "Repuestos",
     description: "Mantén tu equipo al día",
     icon: Settings,
     color: "primary",
+    link: "/repuestos",
   },
   {
     title: "Accesorios",
     description: "Mejora tu experiencia",
     icon: Sparkles,
     color: "secondary",
+    link: "/accesorios",
   },
 ];
 
@@ -47,24 +52,23 @@ const Categories = () => {
             const isPrimary = category.color === "primary";
             
             return (
-              <Card
-                key={category.title}
-                className="p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group border-border/50"
-              >
-                <div
-                  className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
-                    isPrimary ? "bg-primary/10" : "bg-secondary/10"
-                  }`}
-                >
-                  <Icon
-                    className={`h-7 w-7 ${
-                      isPrimary ? "text-primary" : "text-secondary"
-                    } group-hover:scale-110 transition-transform`}
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
-                <p className="text-muted-foreground">{category.description}</p>
-              </Card>
+              <Link key={category.title} to={category.link}>
+                <Card className="p-8 hover:shadow-lg transition-all duration-300 cursor-pointer group border-border/50">
+                  <div
+                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+                      isPrimary ? "bg-primary/10" : "bg-secondary/10"
+                    }`}
+                  >
+                    <Icon
+                      className={`h-7 w-7 ${
+                        isPrimary ? "text-primary" : "text-secondary"
+                      } group-hover:scale-110 transition-transform`}
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
+                  <p className="text-muted-foreground">{category.description}</p>
+                </Card>
+              </Link>
             );
           })}
         </div>

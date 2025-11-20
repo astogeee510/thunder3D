@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
@@ -10,12 +10,11 @@ import Footer from '@/components/Footer';
 const Cart = () => {
   const { items, removeFromCart, updateQuantity, clearCart, getCartTotal } = useCart();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleCheckout = () => {
-    toast({
-      title: "Próximamente",
-      description: "La función de pago estará disponible pronto",
-    });
+    clearCart();
+    navigate('/checkout-success');
   };
 
   const handleClearCart = () => {
