@@ -1,13 +1,8 @@
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { EditProductDialog } from "@/components/EditProductDialog";
 import { CartButton } from "@/components/CartButton";
-import { useToast } from "@/hooks/use-toast";
-import { Pencil, Trash2 } from "lucide-react";
 
 const filamentosData = [
   {
@@ -73,33 +68,6 @@ const filamentosData = [
 ];
 
 const Filamentos = () => {
-  const [filamentos, setFilamentos] = useState(filamentosData);
-  const [editingProduct, setEditingProduct] = useState<any>(null);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const { toast } = useToast();
-
-  const handleDelete = (id: number) => {
-    setFilamentos(filamentos.filter(item => item.id !== id));
-    toast({
-      title: "Producto eliminado",
-      description: "El producto ha sido eliminado del catálogo",
-    });
-  };
-
-  const handleEdit = (product: any) => {
-    setEditingProduct(product);
-    setIsEditDialogOpen(true);
-  };
-
-  const handleSave = (updatedProduct: any) => {
-    setFilamentos(filamentos.map(item => 
-      item.id === updatedProduct.id ? updatedProduct : item
-    ));
-    toast({
-      title: "Producto actualizado",
-      description: "Los cambios han sido guardados exitosamente",
-    });
-  };
 
   return (
     <div className="min-h-screen">
@@ -119,7 +87,7 @@ const Filamentos = () => {
 
           {/* Products Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filamentos.map((filamento) => (
+            {filamentosData.map((filamento) => (
               <Card key={filamento.id} className="border-border/50 hover:border-secondary/50 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/20">
                 <CardHeader>
                   <div className="aspect-video bg-muted rounded-lg mb-4 overflow-hidden">
@@ -160,6 +128,9 @@ const Filamentos = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="flex-col gap-2">
+                  <div className="w-full mb-2">
+                    <span className="text-2xl font-bold text-secondary">{filamento.price}</span>
+                  </div>
                   <CartButton 
                     product={{
                       id: filamento.id,
@@ -169,38 +140,12 @@ const Filamentos = () => {
                       category: 'filamentos'
                     }}
                   />
-                  <div className="flex w-full items-center justify-between gap-2">
-                    <span className="text-2xl font-bold text-secondary">{filamento.price}</span>
-                    <div className="flex gap-2">
-                      <Button 
-                        variant="outline" 
-                        size="icon"
-                        onClick={() => handleEdit(filamento)}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                      <Button 
-                        variant="destructive" 
-                        size="icon"
-                        onClick={() => handleDelete(filamento.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
                 </CardFooter>
               </Card>
             ))}
           </div>
         </div>
       </section>
-      
-      <EditProductDialog
-        product={editingProduct}
-        open={isEditDialogOpen}
-        onOpenChange={setIsEditDialogOpen}
-        onSave={handleSave}
-      />
       
       <Footer />
     </div>
