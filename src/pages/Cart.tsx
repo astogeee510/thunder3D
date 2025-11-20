@@ -13,6 +13,23 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
+    // Guardar compra en el historial
+    const purchase = {
+      id: Date.now().toString(),
+      date: new Date().toISOString(),
+      items: items.map(item => ({
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price * item.quantity,
+      })),
+      total: getCartTotal(),
+    };
+
+    const history = localStorage.getItem('purchaseHistory');
+    const purchaseHistory = history ? JSON.parse(history) : [];
+    purchaseHistory.unshift(purchase);
+    localStorage.setItem('purchaseHistory', JSON.stringify(purchaseHistory));
+
     clearCart();
     navigate('/checkout-success');
   };

@@ -61,6 +61,12 @@ const Navbar = () => {
                 <DropdownMenuItem disabled className="font-medium">
                   {user.name}
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/profile">
+                    <User className="mr-2 h-4 w-4" />
+                    Mi Perfil
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={logout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   Cerrar Sesión

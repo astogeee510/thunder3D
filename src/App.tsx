@@ -11,6 +11,7 @@ import Repuestos from "./pages/Repuestos";
 import Accesorios from "./pages/Accesorios";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import NotFound from "./pages/NotFound";
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/accesorios" element={<Accesorios />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout-success" element={<CheckoutSuccess />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

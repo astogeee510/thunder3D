@@ -54,6 +54,17 @@ export const useAuth = () => {
     return user;
   };
 
+  const updateProfile = (name: string, email: string) => {
+    if (user) {
+      const updatedUser = {
+        ...user,
+        name,
+        email,
+      };
+      setUser(updatedUser);
+    }
+  };
+
   return {
     user,
     login,
@@ -61,5 +72,6 @@ export const useAuth = () => {
     logout,
     isAuthenticated,
     getCurrentUser,
+    updateProfile,
   };
 };
