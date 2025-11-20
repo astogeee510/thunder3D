@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-3d-printer.jpg";
 
 const Hero = () => {
@@ -22,13 +23,17 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="group">
-                Explorar Productos
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button size="lg" variant="outline">
-                Ver Catálogo
-              </Button>
+              <Link to="/impresoras">
+                <Button size="lg" className="group">
+                  Explorar Productos
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+              <Link to="/impresoras">
+                <Button size="lg" variant="outline">
+                  Ver Catálogo
+                </Button>
+              </Link>
             </div>
           </div>
           
